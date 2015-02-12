@@ -1,6 +1,6 @@
 package classes;
 
-public class Song {
+public class Song implements Comparable {
 	
 	
 	
@@ -40,6 +40,29 @@ public class Song {
 	
 	public int getYear(){
 		return year;
+	}
+	
+	public String getAlbum(){
+		return album;
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		if (arg0==null||!(arg0 instanceof Song)){
+			throw new IllegalArgumentException();
+		}
+		Song otherSong=(Song)arg0;
+		if(name.compareTo(otherSong.getName())>0)
+			return 1;
+		else if(name.compareTo(otherSong.getName())<0)
+			return -1;
+		else {
+			if(artist.compareTo(otherSong.getArtist())>0)
+				return 1;
+			else if(artist.compareTo(otherSong.getArtist())<0)
+				return -1;
+		}
+		return 0;
 	}
 	
 }
